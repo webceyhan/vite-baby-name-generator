@@ -10,13 +10,13 @@ const genderOptions: Gender[] = ["boy", "girl", "unisex"];
 const popularityOptions: Popularity[] = ["trendy", "unique"];
 const lengthOptions: Length[] = ["short", "long", "all"];
 
-type Filters = {
+type FilterState = {
   gender: Gender;
   popularity: Popularity;
   length: Length;
 };
 
-const filters = reactive<Filters>({
+const filterState = reactive<FilterState>({
   gender: "boy",
   popularity: "trendy",
   length: "all",
@@ -33,17 +33,17 @@ const filters = reactive<Filters>({
 
         <section class="mb-4">
           <h4> 1) Choose a gender</h4>
-          <Filter name="gender" :options="genderOptions" v-model="filters.gender" />
+          <Filter name="gender" :options="genderOptions" v-model="filterState.gender" />
         </section>
 
         <section class="mb-4">
           <h4>2) Choose the name's popularity</h4>
-          <Filter name="popularity" :options="popularityOptions" v-model="filters.popularity" />
+          <Filter name="popularity" :options="popularityOptions" v-model="filterState.popularity" />
         </section>
 
         <section class="mb-4">
           <h4>3) Choose name's length</h4>
-          <Filter name="length" :options="lengthOptions" v-model="filters.length" />
+          <Filter name="length" :options="lengthOptions" v-model="filterState.length" />
         </section>
 
       </div>
@@ -51,6 +51,6 @@ const filters = reactive<Filters>({
 
     <br />
 
-    {{ filters }}
+    {{ filterState }}
   </div>
 </template>
