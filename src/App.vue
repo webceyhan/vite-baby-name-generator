@@ -15,6 +15,10 @@ function findNames() {
     .filter((r) => (state.length === "all" ? true : r.length === state.length))
     .map((r) => r.name);
 }
+
+function removeName(index: number) {
+  selectedNames.value.splice(index, 1);
+}
 </script>
 
 <template>
@@ -57,8 +61,9 @@ function findNames() {
       <div class="d-flex justify-content-center">
         <button
           class="btn btn-danger btn-lg m-2 p-3"
-          v-for="name in selectedNames"
-          :key="name"
+          v-for="(name, i) in selectedNames"
+          :key="i"
+          @click="removeName(i)"
         >
           {{ name }}
         </button>
