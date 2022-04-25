@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { reactive } from "vue";
+
 type Gender = "boy" | "girl" | "unisex";
 type Popularity = "trendy" | "unique";
 type Length = "short" | "long" | "all";
@@ -6,6 +8,18 @@ type Length = "short" | "long" | "all";
 const genderOptions: Gender[] = ["boy", "girl", "unisex"];
 const popularityOptions: Popularity[] = ["trendy", "unique"];
 const lengthOptions: Length[] = ["short", "long", "all"];
+
+type Filters = {
+  gender: Gender;
+  popularity: Popularity;
+  length: Length;
+};
+
+const filters = reactive<Filters>({
+  gender: "boy",
+  popularity: "trendy",
+  length: "all",
+});
 </script>
 
 <template>
@@ -24,6 +38,8 @@ const lengthOptions: Length[] = ["short", "long", "all"];
               name="btnradio-gender"
               :id="`btnradio-gender-${i}`"
               autocomplete="off"
+              v-model="filters.gender"
+              :value="opt"
             />
             <label
               class="btn btn-outline-primary text-capitalize"
@@ -45,6 +61,8 @@ const lengthOptions: Length[] = ["short", "long", "all"];
               name="btnradio-popularity"
               :id="`btnradio-popularity-${i}`"
               autocomplete="off"
+              v-model="filters.popularity"
+              :value="opt"
             />
             <label
               class="btn btn-outline-primary text-capitalize"
@@ -66,6 +84,8 @@ const lengthOptions: Length[] = ["short", "long", "all"];
               name="btnradio-length"
               :id="`btnradio-length-${i}`"
               autocomplete="off"
+              v-model="filters.length"
+              :value="opt"
             />
             <label
               class="btn btn-outline-primary text-capitalize"
@@ -76,5 +96,9 @@ const lengthOptions: Length[] = ["short", "long", "all"];
         </div>
       </div>
     </div>
+
+    <br />
+
+    {{ filters }}
   </div>
 </template>
