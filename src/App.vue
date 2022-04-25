@@ -38,7 +38,7 @@ const { names, findNames, removeName } = useNames();
         </section>
 
         <section>
-          <button class="btn btn-warning btn-lg" @click="findNames">Find Names</button>
+          <button class="btn btn-info btn-lg" @click="findNames">Find Names</button>
         </section>
       </div>
     </div>
