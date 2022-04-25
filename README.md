@@ -112,3 +112,4 @@ The workflow will build the project using npm and output the result to the `dist
 -   [GitHub Actions](https://docs.github.com/en/actions)
     -   [GitHub Pages](https://pages.github.com/)
     -   [github-pages-deploy-action](https://github.com/JamesIves/)
+-   [Tutorial Video](https://www.youtube.com/watch?v=dZC4T4UiU1c&t=4332s)
