@@ -1,8 +1,18 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import Filter from "./components/Filter.vue";
+import { nameRecords } from "./data";
 import { useFilters, genderOptions, popularityOptions, lengthOptions } from "./filters";
 
 const { state } = useFilters();
+
+const selectedNames = computed(() =>
+  nameRecords
+    .filter((r) => r.gender === state.gender)
+    .filter((r) => r.popularity === state.popularity)
+    .filter((r) => (state.length === "all" ? true : r.length === state.length))
+    .map((r) => r.name)
+);
 </script>
 
 <template>
@@ -34,6 +44,6 @@ const { state } = useFilters();
 
     <br />
 
-    {{ state }}
+    {{ selectedNames }}
   </div>
 </template>
