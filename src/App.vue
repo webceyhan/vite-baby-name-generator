@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { reactive } from "vue";
-import Filter from './components/Filter.vue';
+import Filter from "./components/Filter.vue";
 
 type Gender = "boy" | "girl" | "unisex";
 type Popularity = "trendy" | "unique";
@@ -29,23 +29,24 @@ const filterState = reactive<FilterState>({
 
     <div class="card">
       <div class="card-body">
-
-
-        <section class="mb-4">
-          <h4> 1) Choose a gender</h4>
+        <section class="mb-5">
+          <h5>1) Choose a gender</h5>
           <Filter name="gender" :options="genderOptions" v-model="filterState.gender" />
         </section>
 
-        <section class="mb-4">
-          <h4>2) Choose the name's popularity</h4>
-          <Filter name="popularity" :options="popularityOptions" v-model="filterState.popularity" />
+        <section class="mb-5">
+          <h5>2) Choose the name's popularity</h5>
+          <Filter
+            name="popularity"
+            :options="popularityOptions"
+            v-model="filterState.popularity"
+          />
         </section>
 
-        <section class="mb-4">
-          <h4>3) Choose name's length</h4>
+        <section class="mb-5">
+          <h5>3) Choose name's length</h5>
           <Filter name="length" :options="lengthOptions" v-model="filterState.length" />
         </section>
-
       </div>
     </div>
 
