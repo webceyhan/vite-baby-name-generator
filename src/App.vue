@@ -24,10 +24,10 @@ const filterState = reactive<FilterState>({
 </script>
 
 <template>
-  <div class="container text-center p-5">
+  <div class="container text-center py-5">
     <h1 class="display-5 mb-5">Baby Name Generator</h1>
 
-    <div class="card">
+    <div class="card bg-dark bg-opacity-50">
       <div class="card-body">
         <section class="mb-5">
           <h5>1) Choose a gender</h5>

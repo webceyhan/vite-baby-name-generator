@@ -21,7 +21,7 @@ defineProps<{
         :checked="modelValue === opt"
         :value="opt"
       />
-      <label class="btn btn-outline-primary text-capitalize px-5" :for="`${name}-${i}`">{{
+      <label class="btn btn-outline-info text-capitalize px-5" :for="`${name}-${i}`">{{
         opt
       }}</label>
     </template>
