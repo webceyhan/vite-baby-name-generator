@@ -3,7 +3,7 @@ export type Popularity = 'trendy' | 'unique';
 export type Length = 'short' | 'long' | 'all';
 
 
-export type Name = {
+export type NameRecord = {
     id: number;
     name: string;
     gender: Gender;
@@ -11,7 +11,7 @@ export type Name = {
     length: Length;
 };
 
-export const names: Name[] = [
+export const nameRecords: NameRecord[] = [
     {
         id: 1,
         name: 'Laith',
