@@ -1,18 +1,20 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { ref } from "vue";
 import Filter from "./components/Filter.vue";
 import { nameRecords } from "./data";
 import { useFilters, genderOptions, popularityOptions, lengthOptions } from "./filters";
 
 const { state } = useFilters();
 
-const selectedNames = computed(() =>
-  nameRecords
+const selectedNames = ref<string[]>([]);
+
+function findNames() {
+  selectedNames.value = nameRecords
     .filter((r) => r.gender === state.gender)
     .filter((r) => r.popularity === state.popularity)
     .filter((r) => (state.length === "all" ? true : r.length === state.length))
-    .map((r) => r.name)
-);
+    .map((r) => r.name);
+}
 </script>
 
 <template>
@@ -39,11 +41,28 @@ const selectedNames = computed(() =>
           <h5>3) Choose name's length</h5>
           <Filter name="length" :options="lengthOptions" v-model="state.length" />
         </section>
+
+        <section>
+          <button class="btn btn-warning btn-lg" @click="findNames">Find Names</button>
+        </section>
       </div>
     </div>
 
     <br />
 
-    {{ selectedNames }}
+    <!-- results -->
+    <section v-if="selectedNames.length > 0">
+      <h6>Click on the names you don't like, to remove them from the list.</h6>
+
+      <div class="d-flex justify-content-center">
+        <button
+          class="btn btn-danger btn-lg m-2 p-3"
+          v-for="name in selectedNames"
+          :key="name"
+        >
+          {{ name }}
+        </button>
+      </div>
+    </section>
   </div>
 </template>
