@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { reactive } from "vue";
+import Filter from './components/Filter.vue';
 
 type Gender = "boy" | "girl" | "unisex";
 type Popularity = "trendy" | "unique";
@@ -28,72 +29,23 @@ const filters = reactive<Filters>({
 
     <div class="card">
       <div class="card-body">
-        <h4>1) Choose a gender</h4>
 
-        <div class="btn-group">
-          <template v-for="(opt, i) in genderOptions" :key="i">
-            <input
-              type="radio"
-              class="btn-check"
-              name="btnradio-gender"
-              :id="`btnradio-gender-${i}`"
-              autocomplete="off"
-              v-model="filters.gender"
-              :value="opt"
-            />
-            <label
-              class="btn btn-outline-primary text-capitalize"
-              :for="`btnradio-gender-${i}`"
-              >{{ opt }}</label
-            >
-          </template>
-        </div>
-      </div>
 
-      <div class="card-body">
-        <h4>2) Choose the name's popularity</h4>
+        <section class="mb-4">
+          <h4> 1) Choose a gender</h4>
+          <Filter name="gender" :options="genderOptions" v-model="filters.gender" />
+        </section>
 
-        <div class="btn-group">
-          <template v-for="(opt, i) in popularityOptions" :key="i">
-            <input
-              type="radio"
-              class="btn-check"
-              name="btnradio-popularity"
-              :id="`btnradio-popularity-${i}`"
-              autocomplete="off"
-              v-model="filters.popularity"
-              :value="opt"
-            />
-            <label
-              class="btn btn-outline-primary text-capitalize"
-              :for="`btnradio-popularity-${i}`"
-              >{{ opt }}</label
-            >
-          </template>
-        </div>
-      </div>
+        <section class="mb-4">
+          <h4>2) Choose the name's popularity</h4>
+          <Filter name="popularity" :options="popularityOptions" v-model="filters.popularity" />
+        </section>
 
-      <div class="card-body">
-        <h4>3) Choose name's length</h4>
+        <section class="mb-4">
+          <h4>3) Choose name's length</h4>
+          <Filter name="length" :options="lengthOptions" v-model="filters.length" />
+        </section>
 
-        <div class="btn-group">
-          <template v-for="(opt, i) in lengthOptions" :key="i">
-            <input
-              type="radio"
-              class="btn-check"
-              name="btnradio-length"
-              :id="`btnradio-length-${i}`"
-              autocomplete="off"
-              v-model="filters.length"
-              :value="opt"
-            />
-            <label
-              class="btn btn-outline-primary text-capitalize"
-              :for="`btnradio-length-${i}`"
-              >{{ opt }}</label
-            >
-          </template>
-        </div>
       </div>
     </div>
 
