@@ -1,5 +1,5 @@
 import { reactive } from 'vue';
-import { Gender, Length, Popularity } from './data';
+import { Gender, Length, Popularity } from '../data';
 
 export type State = {
     gender: Gender;
@@ -7,7 +7,7 @@ export type State = {
     length: Length;
 };
 
-const state = reactive<State>({
+const filters = reactive<State>({
     gender: 'boy',
     popularity: 'trendy',
     length: 'all',
@@ -18,5 +18,5 @@ export const popularityOptions: Popularity[] = ['trendy', 'unique'];
 export const lengthOptions: Length[] = ['short', 'long', 'all'];
 
 export const useFilters = () => {
-    return { state };
+    return { filters };
 };

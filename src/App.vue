@@ -1,24 +1,15 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import {
+  useFilters,
+  genderOptions,
+  popularityOptions,
+  lengthOptions,
+} from "./store/filters";
+import { useNames } from "./store/names";
 import Filter from "./components/Filter.vue";
-import { nameRecords } from "./data";
-import { useFilters, genderOptions, popularityOptions, lengthOptions } from "./filters";
 
-const { state } = useFilters();
-
-const selectedNames = ref<string[]>([]);
-
-function findNames() {
-  selectedNames.value = nameRecords
-    .filter((r) => r.gender === state.gender)
-    .filter((r) => r.popularity === state.popularity)
-    .filter((r) => (state.length === "all" ? true : r.length === state.length))
-    .map((r) => r.name);
-}
-
-function removeName(index: number) {
-  selectedNames.value.splice(index, 1);
-}
+const { filters } = useFilters();
+const { names, findNames, removeName } = useNames();
 </script>
 
 <template>
@@ -29,7 +20,7 @@ function removeName(index: number) {
       <div class="card-body">
         <section class="mb-5">
           <h5>1) Choose a gender</h5>
-          <Filter name="gender" :options="genderOptions" v-model="state.gender" />
+          <Filter name="gender" :options="genderOptions" v-model="filters.gender" />
         </section>
 
         <section class="mb-5">
@@ -37,13 +28,13 @@ function removeName(index: number) {
           <Filter
             name="popularity"
             :options="popularityOptions"
-            v-model="state.popularity"
+            v-model="filters.popularity"
           />
         </section>
 
         <section class="mb-5">
           <h5>3) Choose name's length</h5>
-          <Filter name="length" :options="lengthOptions" v-model="state.length" />
+          <Filter name="length" :options="lengthOptions" v-model="filters.length" />
         </section>
 
         <section>
@@ -55,13 +46,13 @@ function removeName(index: number) {
     <br />
 
     <!-- results -->
-    <section v-if="selectedNames.length > 0">
+    <section v-if="names.length > 0">
       <h6>Click on the names you don't like, to remove them from the list.</h6>
 
       <div class="d-flex justify-content-center">
         <button
           class="btn btn-danger btn-lg m-2 p-3"
-          v-for="(name, i) in selectedNames"
+          v-for="(name, i) in names"
           :key="i"
           @click="removeName(i)"
         >
